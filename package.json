@@ -1,0 +1,48 @@
+{
+  "name": "javanrood-client-native-safe",
+  "version": "1.0.101",
+  "description": "کلاینت سامانه سمن‌های شهرستان جوانرود - Native White Screen Fix",
+  "main": "main.js",
+  "author": "Farmandari Javanrood",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --publish never",
+    "portable": "electron-builder --win portable --publish never"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "ir.javanrood.ngo.client",
+    "productName": "کلاینت سامانه سمن‌های شهرستان جوانرود",
+    "directories": {
+      "output": "installer_output"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "client_ui/**/*",
+      "data/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "JavanroodClient_Native_V101.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "کلاینت سامانه سمن‌های شهرستان جوانرود",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": null
+  }
+}
