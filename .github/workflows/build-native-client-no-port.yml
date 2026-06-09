@@ -1,0 +1,27 @@
+name: Build Native Client No Port
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-native-client:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: npm install
+      - name: Build without publish
+        env:
+          GH_TOKEN: ""
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JavanroodClient_Native_NoPort_V101
+          path: installer_output/*
+
